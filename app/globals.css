@@ -1,21 +1,78 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.float-animation {
+  animation: float 3s ease-in-out infinite;
 }
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hover-grow {
+  transition: all 0.3s ease-in-out;
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.sparkle {
+  animation: sparkle 2s infinite;
+}
+
+.nav-link {
+  @apply text-lg font-semibold px-3 py-2 rounded-full transition-colors duration-300;
+}
+
+.nav-link-active {
+  @apply bg-yellow-300 text-blue-600;
+}
+
+.nav-link-inactive {
+  @apply text-white hover:bg-blue-400;
+}
+
+/* Add smooth transition for mobile menu */
+@media (max-width: 1023px) {
+  nav ul {
+    transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  nav ul.open {
+    max-height: 1000px;
+    opacity: 1;
+  }
+}
+
